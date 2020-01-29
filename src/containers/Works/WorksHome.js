@@ -4,40 +4,40 @@ import { connect } from 'react-redux';
 // import { Link } from 'react-router-dom';
 import Helmet from 'react-helmet';
 import NotAvailable from 'components/NotAvailable/NotAvailable';
-// import * as DiscoveryActions from 'redux/modules/discovery';
+// import * as WorksActions from 'redux/modules/works';
 
 @connect()
 // state => ({
-//   status: state.discovery.info
-//   discoveries: state.discovery.discoveries
+//   status: state.works.info
+//   blocks: state.works.blocks
 // })
-// { ...DiscoveryActions }
-class DiscoveryHome extends Component {
+// { ...WorksActions }
+class WorksHome extends Component {
   // static propTypes = {
   //   status: PropTypes.string.isRequired
-  //   discoveries: PropTypes.arrayOf(PropTypes.object),
-  //   getDiscoveries: PropTypes.func.isRequired
+  //   blocks: PropTypes.arrayOf(PropTypes.object),
+  //   getBlocks: PropTypes.func.isRequired
   // };
 
   // static defaultProps = {
-  //   discoveries: null
+  //   blocks: null
   // };
 
   // componentWillMount() {
-  //   const { getDiscoveries, status } = this.props;
+  //   const { getBlocks, status } = this.props;
   //   if (status === 'online' || status == null) {
-  //     getDiscoveries();
+  //     getBlocks();
   //   }
   // }
 
   render() {
     return (
       <div>
-        <Helmet title="Discovery" />
+        <Helmet title="Works" />
         <NotAvailable />
       </div>
     );
   }
 }
 
-export default DiscoveryHome;
+export default WorksHome;

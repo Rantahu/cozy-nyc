@@ -10,39 +10,66 @@
 }
 
 // Profile
-
 .profileButton {
-  position: relative;
-  margin: 0 auto;
+  display: inline-block;
   // overflow: hidden;
   // width: 150px;
   height: 50px;
 }
 
 .userAvatar {
-  position: absolute;
   top: 0;
-  // right: 0;
   padding-left: 10px;
-  background: $foreground;
+  overflow: auto;
+  background: none;
+  box-shadow: 2px 2px 0 $weird-pink;
+  border: 3px solid $cozy-pink;
   object-fit: cover;
   border-radius: 50%;
   width: 50px;
   height: 50px;
   overflow: hidden;
   display: inline-block;
+  vertical-align: middle;
+}
+
+.userAvatar:hover {
+  box-shadow: 2px 2px 0 $cozy-pink;
+  border: 3px solid $weird-pink;
+}
+
+.profileImage {
+  overflow: hidden;
+  object-fit: cover;
+  height: 50px;
+  width: 50px;
+  background-color: $cozy-cream;
+  //10px for userAvatar padding, 3px for userAvatar border 
+  left: -13px;
+  top: -3px;
+  position: relative;
+}
+.profileAvatar {
+  position: absolute;
+  display: inline-block;
+  overflow: hidden;
+  border-radius: 50%;
+  height: 200px;
+  width: 200px;
+  left: 0;
+  top: 0;
+  object-fit: cover;
+  background-color: $foreground;
 }
 
 .userInfo {
-  // position: absolute;
-  // top: 0
-  // left: 0;
-  padding: 5px 15px 5px 0;
+  padding-right: 15px;
   display: inline-block;
+  vertical-align: middle;
 }
 
 .logoutButton {
-  color: $foreground;
+  color: $weird-pink;
   background: none;
   padding: 0;
   margin: 0;
@@ -51,4 +78,141 @@
 .logoutButton:hover {
   background: none;
   color: $cozy-pink;
+}
+
+a:hover {
+  color: $cozy-pink !important;
+}
+
+//separates the "login" and "sign up" buttons by padding "sign up"
+.auth a ~ a{
+  padding-left: 10px;
+}
+
+/* changing navbar depending on theme based on body's class
+(which is decided in App.js)*/
+
+//styles shared by all cream themes
+.creamThemes {
+  a:hover {
+    color: $cozy-cream !important;
+  }
+  .logoutButton:hover {
+    color: $cozy-cream;
+  }
+  .userAvatar {
+    border: 3px solid $weird-cream;
+  }
+  .userAvatar:hover {
+    box-shadow: 2px 2px 0 $weird-cream;
+  }
+}
+//styles shared by all boards themes (cream and normal)
+.boardsThemes {
+  a {
+    color: $weird-blue !important;
+  }
+  .logoutButton {
+    color: $weird-blue;
+  }
+  .userAvatar {
+    box-shadow: 2px 2px 0 $weird-blue;
+  }
+  .userAvatar:hover {
+    border: 3px solid $weird-blue;
+  }
+}
+
+//styles shared by all streams themes (cream and normal)
+.streamsThemes {
+  a {
+    color: $weird-peach !important;
+  }
+  .logoutButton {
+    color: $weird-peach;
+  }
+  .userAvatar {
+    box-shadow: 2px 2px 0 $weird-peach;
+  }
+  .userAvatar:hover {
+    border: 3px solid $weird-peach;
+  }
+}
+//styles shared by all works themes (cream and normal)
+.worksThemes {
+  a {
+    color: $weird-green !important;
+  }
+  .logoutButton {
+    color: $weird-green;
+  }
+  .userAvatar {
+    box-shadow: 2px 2px 0 $weird-green;
+  }
+  .userAvatar:hover {
+    border: 3px solid $weird-green;
+  }
+}
+//general boards pro-button styles (when body has cream bg)
+body[class="boardsTheme"] .profileButton {
+  @extend .boardsThemes;
+  a:hover {
+    color: $cozy-blue !important;
+  }
+  .logoutButton:hover {
+    color: $cozy-blue;
+  }
+  .userAvatar {
+    border: 3px solid $cozy-blue;
+  }
+  .userAvatar:hover {
+    box-shadow: 2px 2px 0 $cozy-blue;
+  }
+}
+//general streams pro-button styles (when body has cream bg)
+body[class="streamsTheme"] .profileButton {
+  @extend .streamsThemes;
+  a:hover {
+    color: $cozy-peach !important;
+  }
+  .logoutButton:hover {
+    color: $cozy-peach;
+  }
+  .userAvatar {
+    border: 3px solid $cozy-peach;
+  }
+  .userAvatar:hover {
+    box-shadow: 2px 2px 0 $cozy-peach;
+  }
+}
+//general works pro-button styles (when body has cream bg)
+body[class="worksTheme"] .profileButton {
+  @extend .worksThemes;
+  a:hover {
+    color: $cozy-green !important;
+  }
+  .logoutButton:hover {
+    color: $cozy-green;
+  }
+  .userAvatar {
+    border: 3px solid $cozy-green;
+  }
+  .userAvatar:hover {
+    box-shadow: 2px 2px 0 $cozy-green;
+  }
+}
+//cream boards pro-button styles (when body has blue bg)
+body[class="creamBoardsTheme"] .profileButton {
+  @extend .creamThemes;
+  @extend .boardsThemes;
+}
+//cream streams pro-button styles (when body has peach bg)
+body[class="creamStreamsTheme"] .profileButton {
+  @extend .creamThemes;
+  @extend .streamsThemes;
+}
+//cream works pro-button styles (when body has green bg)
+body[class="creamWorksTheme"] .profileButton {
+  @extend .creamThemes;
+  @extend .worksThemes;
 }

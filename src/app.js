@@ -35,7 +35,7 @@ export function createApp(req) {
 
     const accessToken = req.header('authorization') || (req.cookies && req.cookies.jwt);
     app.set('accessToken', accessToken);
-
+    console.log(`accesstoken:${accessToken}`);
     return app;
   }
 

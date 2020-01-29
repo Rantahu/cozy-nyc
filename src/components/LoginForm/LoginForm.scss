@@ -1,0 +1,22 @@
+@import '../../theme/variables.scss';
+
+form {
+  button:hover {
+    background-color: $weird-pink !important;
+  }
+
+  button {
+      background-color: $cozy-pink !important;
+      color: $cozy-cream !important;
+      border-style: none !important;
+  }
+
+  a {
+      color: $weird-pink !important;
+      text-decoration: none !important;
+    }
+    
+  a:hover {
+      color: $cozy-pink !important;
+    }
+}

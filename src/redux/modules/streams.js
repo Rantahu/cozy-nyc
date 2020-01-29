@@ -1,6 +1,6 @@
 const initialState = {
   streamsList: {},
-  currentStream: null,
+  currentStreams: null,
   loaded: false
 };
 export default function reducer(state = initialState, action = {}) {
@@ -22,26 +22,26 @@ export default function reducer(state = initialState, action = {}) {
         ...state,
         fetching: true,
         fetched: true,
-        stream: action.result.streams
+        streams: action.result.streams
       };
-    case 'FETCH_USER_STREAM':
+    case 'FETCH_USER_STREAMS':
       return {
         ...state,
         fetching: true
       };
-    case 'FETCH_USER_STREAM_ERROR':
+    case 'FETCH_USER_STREAMS_ERROR':
       return {
         ...state,
         fetching: false,
         fetched: false,
         error: action.error
       };
-    case 'FETCH_USER_STREAM_FULFILLED':
+    case 'FETCH_USER_STREAMS_FULFILLED':
       return {
         ...state,
         fetching: true,
         fetched: true,
-        currentStream: action.result
+        currentStreams: action.result
       };
     default:
       return state;
@@ -53,7 +53,7 @@ export function getStreams() {
     types: ['FETCH_STREAMS', 'FETCH_STREAMS_FULFILLED', 'FETCH_STREAMS_ERROR'],
     promise: async ({ client }) => {
       try {
-        const response = await client.get('/stream/list');
+        const response = await client.get('/streams/list');
         return response;
       } catch (error) {
         console.log(error);
@@ -63,12 +63,12 @@ export function getStreams() {
   };
 }
 
-export function getStreamByUser(username) {
+export function getStreamsByUser(username) {
   return {
-    types: ['FETCH_USER_STREAM', 'FETCH_USER_STREAM_FULFILLED', 'FETCH_USER_STREAM_ERROR'],
+    types: ['FETCH_USER_STREAMS', 'FETCH_USER_STREAMS_FULFILLED', 'FETCH_USER_STREAMS_ERROR'],
     promise: async ({ client }) => {
       try {
-        const response = await client.get(`/stream/${username}/`);
+        const response = await client.get(`/streams/${username}/`);
         return response;
       } catch (error) {
         console.log(error);

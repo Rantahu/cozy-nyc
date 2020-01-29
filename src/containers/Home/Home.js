@@ -31,24 +31,25 @@ class Home extends Component {
           </div>
 
           <div id="homeSidebar" className={`${styles.homeSidebar} col-md-4`}>
-            <ProfileButton className={styles.profileButton} />
+            <div className={styles.profileButton}>
+              <ProfileButton />
+            </div>
 
             <div className={styles.mainLinks}>
-              <Link className={styles.navLinkGreen} to="stream">
-                stream
+              <Link className={styles.navLinkPeach} to="streams">
+                streams
               </Link>
-              <Link className={styles.navLinkOrange} to="boards">
+              <Link className={styles.navLinkBlue} to="boards">
                 boards
               </Link>
-              <Link className={styles.navLinkBlue} to="discovery">
-                discovery
+              <Link className={styles.navLinkGreen} to="works">
+                works
               </Link>
             </div>
 
             <div className={styles.subLinks}>
               <Link to="about">about</Link>
               <Link to="contribute">contribute</Link>
-              <Link to="exchange"> exchange </Link>
             </div>
           </div>
         </div>

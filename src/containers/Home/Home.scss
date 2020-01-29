@@ -1,5 +1,12 @@
 @import '../../theme/variables.scss';
 
+.homeSidebar {
+  padding: 0px;
+  margin-left:0px 15px;
+  text-align: center !important;
+}
+
+
 .mainLinks a {
   display: block;
   font-size: 40px;
@@ -11,9 +18,12 @@
   transform: scale(1.2);
 }
 
-.subLinks a {
+.subLinks {
   display: inline-block;
-  padding: 0 10px 10px 0;
+}
+
+.subLinks a {
+  padding: 5px 10px;
 }
 
 .subLinks a:hover {
@@ -32,41 +42,44 @@
   text-align: center;
   margin: 0 auto;
 }
+
 .logo {
-  fill: $primary-text-color !important;
+  filter: drop-shadow( 3px 3px 0 $cozy-pink);
   width: 250px;
 }
 
-.homeSidebar {
-  margin: 0 auto;
-  text-align: left;
+.logo path{
+  fill: $weird-pink !important;
 }
 
 .navLinkBlue {
+  color: $weird-blue !important;
   text-shadow: 2px 2px 0 $cozy-blue !important;
 }
 
 .navLinkBlue:hover {
   color: $cozy-blue !important;
-  text-shadow: 2px 2px 0 $primary-text-color !important;
+  text-shadow: 2px 2px 0 $weird-blue !important;
 }
 
 .navLinkGreen {
+  color: $weird-green !important;
   text-shadow: 2px 2px 0 $cozy-green !important;
 }
 
 .navLinkGreen:hover {
   color: $cozy-green !important;
-  text-shadow: 2px 2px 0 $primary-text-color !important;
+  text-shadow: 2px 2px 0 $weird-green !important;
 }
 
-.navLinkOrange {
-  text-shadow: 2px 2px 0 $cozy-orange !important;
+.navLinkPeach {
+  color: $weird-peach !important;
+  text-shadow: 2px 2px 0 $cozy-peach !important;
 }
 
-.navLinkOrange:hover {
-  color: $cozy-orange !important;
-  text-shadow: 2px 2px 0 $primary-text-color !important;
+.navLinkPeach:hover {
+  color: $cozy-peach !important;
+  text-shadow: 2px 2px 0 $weird-peach !important;
 }
 
 @media screen and (max-width: 992px) {
@@ -80,5 +93,5 @@
 }
 
 .profileButton {
-
+  margin-bottom: 10px;
 }

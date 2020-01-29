@@ -32,7 +32,6 @@ html {
   overflow-x: hidden;
 }
 
-
 body {
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -40,8 +39,8 @@ body {
   -o-user-select: none;
   user-select: none;
   line-height: 1;
-  background-color: #272727;
-  color: #F8F5EB;
+  background-color: $background;
+  color: $bg-text-color;
 }
 
 ol,
@@ -73,25 +72,24 @@ table {
 
 h1 {
   font-size: 72px;
+  color: $cozy-pink;
 }
 
 h2 {
   font-size: 60px;
+  color: $weird-pink;
 }
 
 a {
-  color: $primary-text-color;
-  // line-height: 30px;
+  color: $weird-pink !important;
   display: inline-block;
   text-decoration: none !important;
-  text-shadow: 1px 1px 0 $cozy-pink !important;
   transition: all .2s ease-in-out;
 }
 
 a:hover {
   color: $cozy-pink;
   text-decoration: none;
-  text-shadow: 1px 1px 0 $primary-text-color !important;
 }
 
 
@@ -110,17 +108,16 @@ button {
   display: block;
   padding: 10px;
   border-radius: 5px;
-  background-color: $foreground;
-  color: $alt-text-color;
+  background-color: $cozy-pink;
+  color: $cozy-cream;
   transition: all .2s ease-in-out;
   border-style: none;
-  box-shadow: 3px 3px 0 $accent;
+  box-shadow: 3px 3px 0 $weird-pink;
 }
-
+//flip button icon and bg on click, keep shadow color
 button:hover {
-  background-color: $cozy-pink;
-  color: $primary-text-color;
-  box-shadow: 2px 2px 0 $primary-text-color;
+  background-color: $weird-pink;
+  box-shadow: 2px 2px 0 $cozy-pink;
 }
 
 /* Containers */
@@ -128,12 +125,19 @@ button:hover {
   margin: 0 auto;
   min-height: 100%;
   height: 100%;
-  padding: 5%;
+  padding: 7% 5% 5%;
+  width: 100%;
 }
 
 
 @media screen and (max-width: 992px) {
   .container {
-    padding: 10%;
+    padding: 75px 5% 5%;
+  }
+}
+
+@media screen and (max-width: 1500px) and (min-width: 992px){
+  .container {
+    padding: 130px 5% 5%;
   }
 }

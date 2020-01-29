@@ -4,9 +4,9 @@ import auth from './modules/auth';
 import notifs from './modules/notifs';
 import info from './modules/info';
 import boards from './modules/boards';
-import stream from './modules/stream';
+import streams from './modules/streams';
 import profile from './modules/profile';
-import discovery from './modules/discovery';
+import works from './modules/works';
 
 export default function createReducers(asyncReducers) {
   return {
@@ -15,8 +15,8 @@ export default function createReducers(asyncReducers) {
     notifs,
     auth,
     boards,
-    stream,
-    discovery,
+    streams,
+    works,
     profile,
     info,
     // errorHandler,

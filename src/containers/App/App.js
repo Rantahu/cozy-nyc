@@ -32,7 +32,6 @@ import NavBar from 'components/NavBar/NavBar';
 @connect(
   state => ({
     notifs: state.notifs
-    // user: state.auth.user
   }),
   { logout: logoutAction, pushState: push }
 )
@@ -41,9 +40,6 @@ class App extends Component {
   static propTypes = {
     route: PropTypes.objectOf(PropTypes.any).isRequired,
     location: PropTypes.objectOf(PropTypes.any).isRequired,
-    // user: PropTypes.shape({
-    //   username: PropTypes.string
-    // }),
     notifs: PropTypes.shape({
       global: PropTypes.array
     }).isRequired,
@@ -64,11 +60,16 @@ class App extends Component {
     prevProps: this.props // eslint-disable-line react/no-unused-state
   };
 
+  componentDidMount() {
+    this.setTheme();
+  }
+
   componentDidUpdate(prevProps) {
     const { location } = this.props;
 
     if (location !== prevProps.location) {
       window.scrollTo(0, 0);
+      this.setTheme();
     }
   }
 
@@ -92,6 +93,31 @@ class App extends Component {
     };
   }
 
+  setTheme() {
+    const { location } = this.props;
+    if (location.pathname.includes('boards')) {
+      if (location.pathname.includes('thread')) {
+        document.body.className = 'creamBoardsTheme';
+      } else {
+        document.body.className = 'boardsTheme';
+      }
+    } else if (location.pathname.includes('streams')) {
+      if (location.pathname.includes('watch')) {
+        document.body.className = 'creamStreamsTheme';
+      } else {
+        document.body.className = 'streamsTheme';
+      }
+    } else if (location.pathname.includes('works')) {
+      if (location.pathname.includes('yaya')) {
+        document.body.className = 'creamWorksTheme';
+      } else {
+        document.body.className = 'worksTheme';
+      }
+    } else {
+      document.body.removeAttribute('class');
+    }
+  }
+
   handleLogout = event => {
     const { logout } = this.props;
 
@@ -101,9 +127,7 @@ class App extends Component {
 
   render() {
     const { notifs, route } = this.props;
-    // const { user } = this.state;
     const styles = require('./App.scss');
-
     return (
       <div className={styles.appContent}>
         <NavBar />

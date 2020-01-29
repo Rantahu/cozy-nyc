@@ -30,6 +30,12 @@ class NavBar extends Component {
     });
   }
 
+  hideDropdown() {
+    this.setState({
+      show: false
+    });
+  }
+
   render() {
     const styles = require('./NavBar.scss');
     const { location } = this.props;
@@ -43,38 +49,41 @@ class NavBar extends Component {
     const dropdown = show ? (
       <div className={styles.links}>
         <div className="main-links">
-          <NavLink className={`${styles.mainLink} nav-hover-orange`} to="/stream">
-            stream
+          <NavLink className={`${styles.mainLink} nav-hover-orange`} to="/streams" onClick={() => this.hideDropdown()}>
+            streams
           </NavLink>
           <br />
-          <NavLink className={`${styles.mainLink} nav-hover-blue`} to="/boards">
+          <NavLink className={`${styles.mainLink} nav-hover-blue`} to="/boards" onClick={() => this.hideDropdown()}>
             boards
           </NavLink>
           <br />
-          <NavLink className={`${styles.mainLink} nav-hover-green`} to="/discovery">
-            discovery
+          <NavLink className={`${styles.mainLink} nav-hover-green`} to="/works" onClick={() => this.hideDropdown()}>
+            works
           </NavLink>
           <br />
         </div>
         <br />
         <div className="sub-links">
-          <NavLink to="/about">about</NavLink>
+          <NavLink to="/about" onClick={() => this.hideDropdown()}>
+            about
+          </NavLink>
           <br />
-          <NavLink to="/contribute">contribute</NavLink>
-          <br />
-          <NavLink to="/exchange">exchange</NavLink>
+          <NavLink to="/contribute" onClick={() => this.hideDropdown()}>
+            contribute
+          </NavLink>
         </div>
         {/* overlay allows user to click anywhere to hide dropdown */}
         <div
           role="button"
           className={styles.overlay}
-          onClick={() => this.showDropdown()}
-          onKeyDown={() => this.showDropdown()}
+          onClick={() => this.hideDropdown()}
+          onKeyDown={() => this.hideDropdown()}
           tabIndex={0}
         />
       </div>
     ) : null;
 
+    // const color = location.pathname;
     if (location.pathname === '/') {
       /*
         IF at Home page:
@@ -83,6 +92,7 @@ class NavBar extends Component {
       */
       return <div className="u-cf" />;
     }
+
     // else if (this.props.location.pathname === '/about') {
     //   /*
     //     If at About page:
@@ -102,22 +112,25 @@ class NavBar extends Component {
       Else:
         Display basic NavBar.
     */
-
     return (
-      <div className={styles.navbar}>
+      <div className={`${styles.navbar}`}>
         {/* conditionally adds class to show bg */}
         <div className={`${styles.navbarDropdown} ${menuBgClicked}`}>
           <span className={styles.navbarMenu} role="button" tabIndex={0}>
             <div className={styles.icons}>
               <button
                 type="button"
-                className={`${styles.hamburger} ${iconClicked}`}
+                className={`${styles.hamburger} ${styles.icon} ${iconClicked}`}
                 onClick={() => this.showDropdown()}
               >
                 {/* conditionally adds class to change icon color */}
                 <SVG src={hamburger} alt="hamburger" />
               </button>
-              <Link className={`${styles.navbarButton}  ${iconClicked}`} to="/">
+              <Link
+                className={`${styles.navbarButton} ${styles.icon} ${iconClicked}`}
+                to="/"
+                onClick={() => this.hideDropdown()}
+              >
                 {/* conditionally adds class to change icon color */}
                 <SVG className={`${styles.brandimg}`} src={cube} alt="cube" />
               </Link>
@@ -125,7 +138,13 @@ class NavBar extends Component {
             {dropdown}
           </span>
         </div>
-        <div className={styles.profileButton}>
+        <div
+          className={styles.profileButton}
+          role="button"
+          onKeyDown={() => this.hideDropdown()}
+          onClick={() => this.hideDropdown()}
+          tabIndex={0}
+        >
           <ProfileButton />
         </div>
         <div className="u-cf" />

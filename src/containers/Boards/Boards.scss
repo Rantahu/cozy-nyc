@@ -13,7 +13,8 @@
   bottom: 20px;
   right: 20px;
   padding: 20px;
-  background-color: grey;
+  background-color: $weird-cream;
+  color: $weird-blue;
 }
 
 .popupButton {
@@ -21,4 +22,24 @@
   z-index: 900;
   bottom: 0;
   right: 0;
+}
+
+.link {
+  color: $cozy-blue !important;
+}
+
+.link:hover {
+  color: $weird-blue !important;
+}
+
+.hiddenLink {
+  color:$weird-blue !important;
+}
+
+.threads {
+  display: flex;
+  justify-content: space-between !important;
+  flex-flow: row wrap !important;
+  //remove extra space around the thread block
+  margin-top: -40px !important;
 }

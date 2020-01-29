@@ -19,18 +19,24 @@
 
 //sets up dropdown menu around icons
 .navbarDropdown {
+  position: fixed;
   display: inline-block;
 }
 
 //adds dropdown menu bg color on hamburger click
 .navbarDropdownMenu {
   background-color: $foreground;
+  border-radius: 5px;
 }
 
 .icons{
-  padding-top: 7px;
   z-index: 102;
   position:relative;
+  margin-top: 3px;
+}
+
+SVG path {
+  fill: $foreground !important;
 }
 
 //hamburger button
@@ -61,7 +67,7 @@
 }
 
 //changes svg icon color on click
-.iconClicked path{
+.iconClicked SVG path{
   fill: $background  !important;
 }
 
@@ -75,7 +81,11 @@
 }
 
 .navbarMenu a {
-  color: $alt-text-color;
+  color: $cozy-cream !important;
+}
+
+.navbarMenu a:hover {
+  color: $weird-pink !important;
 }
 
 .navbarMenu .main-links {
@@ -118,4 +128,108 @@
 //removes outline around clicked elements
 *:focus {
   outline:0;
+}
+
+/* changing navbar colors depending on theme based on body's class
+(which is decided in App.js)*/
+
+//styles shared by all cream themes
+.creamTheme {
+  .navbarDropdownMenu {
+    background-color: $cozy-cream;
+  }
+  SVG path {
+    fill: $cozy-cream !important;
+  }
+}
+
+//general boards navbar styles (when body has cream bg)
+body[class="boardsTheme"] .navbar{
+  .navbarDropdownMenu {
+    background-color: $cozy-blue;
+  }
+  .navbarMenu a {
+    color: $cozy-cream !important;
+  }
+  .navbarMenu a:hover{
+    color: $weird-blue !important;
+  }
+  .icon:not(.iconClicked) {
+    SVG path {
+    fill: $cozy-blue !important;}
+  }
+}
+//general streams navbar styles (when body has cream bg)
+body[class="streamsTheme"] .navbar{
+  .navbarDropdownMenu {
+    background-color: $cozy-peach;
+  }
+  .navbarMenu a {
+    color: $cozy-cream !important;
+  }
+  .navbarMenu a:hover{
+    color: $weird-peach !important;
+  }
+  .icon:not(.iconClicked) {
+    SVG path {
+    fill: $cozy-peach !important;}
+  }
+}
+//general works navbar styles (when body has cream bg)
+body[class="worksTheme"] .navbar{
+  .navbarDropdownMenu {
+    background-color: $cozy-green;
+  }
+  .navbarMenu a {
+    color: $cozy-cream !important;
+  }
+  .navbarMenu a:hover{
+    color: $weird-green !important;
+  }
+  .icon:not(.iconClicked) {
+    SVG path {
+    fill: $cozy-green !important;}
+  }
+}
+//cream boards theme styles (when body has blue bg)
+body[class="creamBoardsTheme"] .navbar{
+  @extend .creamTheme;
+  .navbarMenu a {
+    color: $cozy-blue !important;
+  }
+  .navbarMenu a:hover{
+    color: $weird-blue !important;
+  }
+  .iconClicked {
+    SVG path {
+    fill: $cozy-blue !important;}
+  }
+}
+//cream streams theme styles (when body has peach bg)
+body[class="creamStreamsTheme"] .navbar{
+  @extend .creamTheme;
+  .navbarMenu a {
+    color: $cozy-peach !important;
+  }
+  .navbarMenu a:hover{
+    color: $weird-peach !important;
+  }
+  .iconClicked {
+    SVG path {
+    fill: $cozy-peach !important;}
+  }
+}
+//cream works theme styles (when body has green bg)
+body[class="creamWorksTheme"] .navbar{
+  @extend .creamTheme;
+  .navbarMenu a {
+    color: $cozy-green !important;
+  }
+  .navbarMenu a:hover{
+    color: $weird-green !important;
+  }
+  .iconClicked {
+    SVG path {
+    fill: $cozy-green !important;}
+  }
 }

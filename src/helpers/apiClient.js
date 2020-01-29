@@ -15,6 +15,7 @@ export default function apiClient(req) {
 
   instance.interceptors.request.use(
     conf => {
+      console.log('hi');
       if (__SERVER__) {
         if (req.header('cookie')) {
           conf.headers.Cookie = req.header('jwt');

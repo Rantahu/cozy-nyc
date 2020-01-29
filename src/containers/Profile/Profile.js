@@ -25,7 +25,7 @@ class Profile extends Component {
 
   static defaultProps = {
     profile: null,
-    match: null,
+    match: null
   };
 
   componentDidMount() {
@@ -43,17 +43,12 @@ class Profile extends Component {
   render() {
     const { profile } = this.props;
     const styles = require('./Profile.scss');
-
     return (
       <div className={styles.profileWrapper}>
         {profile && (
           <div className={styles.profileHeader}>
             <Helmet title={profile.username} />
-            <img
-              className={styles.profileAvatar}
-              src={profile.profileImg}
-              alt={profile.username}
-            />
+            <img className={styles.profileAvatar} src={profile.profileImg} alt={profile.username} />
             <span className={styles.profileInfo}>
               <h1>{`@${profile.username}`}</h1>
               <p>[Bio Here]</p>

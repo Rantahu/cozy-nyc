@@ -3,10 +3,10 @@ import React, { Component } from 'react';
 // import { Link } from 'react-router-dom';
 
 /*
-  Stream Block Component
-  Bubble/preview box for a stream
+  Streams Block Component
+  Bubble/preview box for a streams
 */
-class StreamBlock extends Component {
+class StreamsBlock extends Component {
   static propTypes = {
     // Define the proptyes being used here.
   };
@@ -24,4 +24,4 @@ class StreamBlock extends Component {
   }
 }
 
-export default StreamBlock;
+export default StreamsBlock;

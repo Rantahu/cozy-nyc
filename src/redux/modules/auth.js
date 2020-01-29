@@ -103,14 +103,14 @@ export default function reducer(state = initialState, action = {}) {
     case 'FETCH_USER_PROFILE_ERROR':
       return {
         ...state,
-        fecthing: false,
+        fetching: false,
         fetched: false,
         error: action.payload
       };
     case 'FETCH_USER_PROFILE_FULFILLED':
       return {
         ...state,
-        fecthing: false,
+        fetching: false,
         fetched: true,
         profile: action.result
       };
@@ -196,6 +196,7 @@ export function getUserProfile(username) {
     promise: async ({ client }) => {
       try {
         const response = await client.get(`/profile/${username}/`);
+        console.log(response);
         return response;
       } catch (error) {
         console.log(error);
@@ -208,6 +209,7 @@ export function login(data) {
   return {
     types: [LOGIN, LOGIN_SUCCESS, LOGIN_FAIL],
     promise: async ({ client }) => {
+      console.log('ugh');
       try {
         const response = await client.post('/auth/token/', data);
         setCookie()(response);

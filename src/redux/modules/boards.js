@@ -7,7 +7,7 @@ const initialState = {
   },
   currentThread: {
     id: null,
-    board: null,
+    board: null, // board id
     posts: []
   },
   loaded: false
@@ -78,8 +78,7 @@ export default function reducer(state = initialState, action = {}) {
     case 'CREATE_THREAD':
       return {
         ...state,
-        fetching: false,
-        fetched: false,
+        fetching: true
       };
     case 'CREATE_THREAD_ERROR':
       return {
@@ -92,7 +91,25 @@ export default function reducer(state = initialState, action = {}) {
       return {
         ...state,
         fetching: true,
-        fetched: true,
+        fetched: true
+      };
+    case 'CREATE_POST':
+      return {
+        ...state,
+        fetching: true
+      };
+    case 'CREATE_POST_FULFILLED':
+      return {
+        ...state,
+        fetching: true,
+        fetched: true
+      };
+    case 'CREATE_POST_ERROR':
+      return {
+        ...state,
+        fetching: false,
+        fetched: false,
+        error: action.error
       };
     default:
       return state;
@@ -131,8 +148,13 @@ export function getBoard(boardTag) {
 export function createThread(data) {
   return {
     types: ['CREATE_THREAD', 'CREATE_THREAD_FULFILLED', 'CREATE_THREAD_ERROR'],
-    promise: ({ client }) => {
-      client.post('/boards/thread/create', data);
+    promise: async ({ client }) => {
+      try {
+        const response = client.post('/boards/thread/create', data);
+        return response;
+      } catch (error) {
+        return { type: 'CREATE_THREAD_ERROR', error };
+      }
     }
   };
 }
@@ -147,6 +169,20 @@ export function getThread(threadId) {
         return response;
       } catch (error) {
         return { type: 'FETCH_THREAD_ERROR', error };
+      }
+    }
+  };
+}
+
+export function createPost(data) {
+  return {
+    types: ['CREATE_POST', 'CREATE_POST_FULFILLED', 'CREATE_POST_ERROR'],
+    promise: async ({ client }) => {
+      try {
+        const response = client.post('/boards/post/create', data);
+        return response;
+      } catch (error) {
+        return { type: 'CREATE_POST_ERROR', error };
       }
     }
   };

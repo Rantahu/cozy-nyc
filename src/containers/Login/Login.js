@@ -29,10 +29,13 @@ class Login extends Component {
 
   onLogin = async data => {
     const { login } = this.props;
-    const result = await login(data);
-    this.successLogin();
-
-    return result;
+    try {
+      const result = await login(data);
+      this.successLogin();
+      return result;
+    } catch (error) {
+      this.errorLogin(error);
+    }
   };
 
   successLogin = () => {
@@ -41,6 +44,16 @@ class Login extends Component {
     notifSend({
       message: "You're logged in now !",
       kind: 'success',
+      dismissAfter: 2000
+    });
+  };
+
+  errorLogin = error => {
+    const { notifSend } = this.props;
+
+    notifSend({
+      message: `Login error:\n${error.detail}`,
+      kind: 'danger',
       dismissAfter: 2000
     });
   };

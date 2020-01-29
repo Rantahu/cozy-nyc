@@ -3,24 +3,24 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // import { Link } from 'react-router-dom';
 import Helmet from 'react-helmet';
-// import StreamBlock from 'components/Stream/StreamBlock';
+// import StreamsBlock from 'components/Streams/StreamsBlock';
 import NotAvailable from 'components/NotAvailable/NotAvailable';
-import * as StreamActions from 'redux/modules/stream';
+import * as StreamsActions from 'redux/modules/streams';
 
 @connect(
   state => ({
-    streamsList: state.stream.streamsList
+    streamsList: state.streams.streamsList
   }),
-  { ...StreamActions }
+  { ...StreamsActions }
 )
-class Stream extends Component {
+class Streams extends Component {
   // static propTypes = {
   //   streamsList: PropTypes.arrayOf(PropTypes.object),
   //   getStreams: PropTypes.func.isRequired
   // };
 
   // static defaultProps = {
-  //   streamList: null
+  //   streamsList: null
   // };
 
   // componentWillMount() {
@@ -33,19 +33,19 @@ class Stream extends Component {
   render() {
     // const { streamsList } = this.props;
 
-    // const mappedStreams = streamsList.map(stream => (
-    //   <StreamBlock
-    //     key={stream.id}
-    //     user={stream.username}
-    //     preview={stream.previewImg}
-    //     title={stream.title}
-    //     viewers={stream.viewCount}
+    // const mappedStreams = streamsList.map(streams => (
+    //   <StreamsBlock
+    //     key={streams.id}
+    //     user={streams.username}
+    //     preview={streams.previewImg}
+    //     title={streams.title}
+    //     viewers={streams.viewCount}
     //   />
     // ));
 
     return (
       <div>
-        <Helmet title="stream" />
+        <Helmet title="streams" />
         <div>
           <NotAvailable />
         </div>
@@ -53,4 +53,4 @@ class Stream extends Component {
     );
   }
 }
-export default Stream;
+export default Streams;

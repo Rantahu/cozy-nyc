@@ -6,6 +6,7 @@ import ThreadBlock from 'components/Boards/ThreadBlock';
 import ThreadForm from 'components/Boards/Forms/ThreadForm';
 import NotAvailable from 'components/NotAvailable/NotAvailable';
 import * as BoardsActions from 'redux/modules/boards';
+import * as notifActions from 'redux/modules/notifs';
 
 /*
   Board Page
@@ -20,7 +21,7 @@ import * as BoardsActions from 'redux/modules/boards';
     auth: state.auth
   }),
   /* actions to check if board is available and list of boards */
-  { ...BoardsActions }
+  { ...notifActions, ...BoardsActions }
 )
 class Board extends Component {
   static propTypes = {
@@ -36,7 +37,8 @@ class Board extends Component {
         boardTag: PropTypes.string.isRequired
       })
     }),
-    getBoard: PropTypes.func.isRequired
+    getBoard: PropTypes.func.isRequired,
+    notifSend: PropTypes.func.isRequired
   };
 
   static defaultProps = {
@@ -63,34 +65,59 @@ class Board extends Component {
     }
   }
 
+  successSubmit = () => {
+    const { notifSend } = this.props;
+
+    notifSend({
+      message: 'Thread submitted !',
+      kind: 'success',
+      dismissAfter: 2000
+    });
+  };
+
+  errorSubmit = error => {
+    const { notifSend } = this.props;
+
+    notifSend({
+      message: `Thread submit error:\n${error.detail}`,
+      kind: 'danger',
+      dismissAfter: 2000
+    });
+  };
+
   createThread = async data => {
+    this.toggleForm();
+    // this.successSubmit();
     const { createThread } = this.props;
-    const result = await createThread(data);
+    try {
+      const result = await createThread(data);
+      this.successSubmit();
+      return result;
+    } catch (error) {
+      this.errorSubmit(error);
+    }
+  };
 
-    return result;
-  }
-
-  toggleThreadForm() {
-    // console.log(this.state.showPopupForm);
+  toggleForm() {
     const { showPopupForm } = this.state;
     this.setState({
       showPopupForm: !showPopupForm
     });
   }
 
-
   render() {
     const styles = require('./Boards.scss');
     const { currentBoard, match, auth } = this.props;
     const { showPopupForm } = this.state;
-    const popup = (showPopupForm ? (
+    const popup = showPopupForm ? (
       <div className={`${styles.popupForm}`}>
-        <ThreadForm
-          onSubmit={this.createThread}
-          board={currentBoard.tag}
-          poster={auth.user.id}
-        />
-      </div>) : null);
+        <ThreadForm onSubmit={this.createThread} board={currentBoard.tag} poster={auth.user.id} />
+      </div>
+    ) : (
+      <button type="button" className={`${styles.popupButton}`} onClick={() => this.toggleForm()}>
+        +
+      </button>
+    );
 
     /*
       Creates a list of threads.
@@ -117,17 +144,14 @@ class Board extends Component {
         {currentBoard !== null && (
           <div>
             <Helmet title={`boards - /${currentBoard.tag}/`} />
-            {mappedThreads}
-            {/*
-            Conditional statement is needed to prevent nonauthenticated users
-            from filling out a thread create form.
-           */}
-            {auth.user !== null && (
-              <div className={`${styles.popupWrapper}`}>
-                {popup}
-                <button type="button" className={`${styles.popupButton}`} onClick={() => this.toggleThreadForm()}>noot</button>
-              </div>
-            )}
+            <div className={`${styles.threads} card-columns`}>
+              {mappedThreads}
+              {/*
+              Conditional statement is needed to prevent nonauthenticated users
+              from filling out a thread create form.
+            */}
+            </div>
+            {auth.user !== null && <div className={`${styles.popupWrapper}`}>{popup}</div>}
           </div>
         )}
         {currentBoard == null && (

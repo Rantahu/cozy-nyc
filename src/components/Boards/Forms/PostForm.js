@@ -1,8 +1,13 @@
 import React from 'react';
 import { Form, Field } from 'react-final-form';
+import PropTypes from 'prop-types';
 
-const ReplyForm = () => (
+const PostForm = ({
+  onSubmit, board, poster, thread
+}) => (
   <Form
+    onSubmit={values => onSubmit(values).then(() => {}, err => err)}
+    initialValues={{ board, poster, thread }}
     render={({ handleSubmit }) => (
       <form className="form-horizontal" onSubmit={handleSubmit}>
         <Field name="image" type="file" component="input" label="image" />
@@ -15,5 +20,11 @@ const ReplyForm = () => (
   />
 );
 
+PostForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+  board: PropTypes.string.isRequired,
+  poster: PropTypes.number.isRequired,
+  thread: PropTypes.any.isRequired
+};
 
-export default ReplyForm;
+export default PostForm;

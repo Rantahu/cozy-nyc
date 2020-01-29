@@ -3,10 +3,9 @@ import { connectedReduxRedirect } from 'redux-auth-wrapper/history4/redirect';
 import { App, Home } from 'containers';
 import { NotFound, InternalServer } from 'containers/ErrorPages';
 import About from 'containers/About/Loadable';
-import StreamHome, { Stream } from 'containers/Stream/Loadable';
+import StreamsHome, { Streams } from 'containers/Streams/Loadable';
 import BoardsHome, { Board, Thread } from 'containers/Boards/Loadable';
-import Exchange from 'containers/Exchange/Loadable';
-import DiscoveryHome from 'containers/Discovery/Loadable';
+import WorksHome from 'containers/Works/Loadable';
 import Contribute from 'containers/Contribute/Loadable';
 import Login from 'containers/Login/Loadable';
 import LoginSuccess from 'containers/LoginSuccess/Loadable';
@@ -33,13 +32,12 @@ const routes = [
     component: App,
     routes: [
       { path: '/', exact: true, component: Home },
-      { path: '/stream', component: StreamHome },
-      { path: '/stream/:username', exact: true, component: Stream },
+      { path: '/streams', component: StreamsHome },
+      { path: '/streams/:username', exact: true, component: Streams },
       { path: '/boards/', component: BoardsHome, exact: true },
       { path: '/boards/:boardTag/', exact: true, component: Board },
       { path: '/boards/:boardTag/thread/:threadId', exact: true, component: Thread },
-      { path: '/exchange', component: Exchange },
-      { path: '/discovery', component: DiscoveryHome },
+      { path: '/works', component: WorksHome },
       { path: '/about', component: About },
       { path: '/contribute', component: Contribute },
       { path: '/login', component: Login },

@@ -8,22 +8,35 @@
  *
  */
 
-
-// Colors
-$cozy-pink: #ffd8e7;
-$cozy-blue: #A7C5D6;
-$cozy-orange: #FDCE89;
+//color hex codes:
+//base
+$cozy-cream: #f8f5eb;
+$weird-cream: #edeae1;
+$cozy-gray: #494949;
+$weird-gray: #dddddd;
+//works
 $cozy-green: #a7d6a8;
+$weird-green: #dbeee1;
+//boards
+$cozy-blue: #48a1c7;
+$weird-blue: #a6c4d5;
+//streams
+$cozy-peach: #fcc1b1;
+$weird-peach: #fcdfd7;
+//home and misc.
+$cozy-pink: #fa73ad;
+$weird-pink: #fab2d1;
 
-$background: #272727;
-$foreground: #F8F5EB;
-$accent: $cozy-pink;
+//color formatting defaults
+//divs & other major page elements
+$background: $cozy-cream; 
+$foreground: $cozy-pink;
+$accent: $weird-cream;
 
-$primary-text-color: #F8F5EB;
-$secondary-text-color: $cozy-pink;
-$alt-text-color: #272727;
-
-
+//text
+$bg-text-color: $cozy-gray;
+$fg-text-color: $cozy-cream;
+$link-text-color: $weird-pink;
 
 $font-size-base: 14px;
 $font-family-sans-serif: "Helvetica Neue", Helvetica, sans-serif;

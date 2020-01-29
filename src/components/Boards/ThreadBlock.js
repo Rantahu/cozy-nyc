@@ -23,7 +23,7 @@ class ThreadBlock extends Component {
   static defaultProps = {
     image: null,
     title: null,
-    blurb: '',
+    blurb: ''
   };
 
   render() {
@@ -39,23 +39,24 @@ class ThreadBlock extends Component {
         Needs to display Thread image(If it exist), user/profile of poster, blurb,
         and post date.
       */
-      <div className={`${styles.threadWrapper} card col-md-3 col-xs-6`}>
+      <div className={`${styles.threadWrapper} col-md-3 col-xs-6 mx-auto`}>
         <Link to={{ pathname: threadURL }}>
           <div className={`${styles.threadContent}`}>
             {image !== null && <img className={styles.threadImage} src={image} alt={user.username} />}
-            <div className={`${styles.threadText} card-text`}>
+            <div className={`${styles.threadText} card-body`}>
               {title !== null && <p className={`${styles.threadTitle} card-title`}>{title}</p>}
-              <p className={styles.threadBlurb}>{blurb}</p>
-              <p className={styles.threadDate}>{date}</p>
+              <p className={`${styles.threadBlurb} card-text`}>{blurb}</p>
+              {<p className={styles.threadDate}>{date}</p>}
+            </div>
+            <div className={styles.threadPoster}>
+              <Link to={{ pathname: profileURL }}>
+                <p>
+                  <img className={styles.profileAvatar} src={user.profileImg} alt={user.username} /> {user.username}
+                </p>
+              </Link>
             </div>
           </div>
         </Link>
-        <div className={styles.threadPoster}>
-          <Link to={{ pathname: profileURL }}>
-            <img className="profile-image" src={user.profileImg} alt={user.username} />
-            <p>{user.username}</p>
-          </Link>
-        </div>
       </div>
     );
   }
