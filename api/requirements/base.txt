@@ -1,0 +1,32 @@
+# Django
+django==2.1.10
+
+# Configuration
+dj-database-url
+python-decouple
+whitenoise
+
+# Django 3rd party modules
+django-allauth
+django-extensions
+django-model-utils
+django-rest-auth
+django-webpack-loader
+djangorestframework
+djangorestframework_simplejwt
+django-environ
+django-filter
+django-cors-headers
+
+channels
+
+# Python-PostgreSQL Database Adapter
+psycopg2-binary
+django-crispy-forms
+
+# Time zones support
+pytz
+
+pillow
+
+stripe
