@@ -13,3 +13,4 @@ api/**/*.nedb
 *.report.html
 coverage/
 .env
+.DS_Store
